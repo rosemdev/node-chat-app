@@ -17,12 +17,17 @@ const publicDir = path.join(__dirname, '../public');
 //set static directory to serve
 app.use(express.static(publicDir));
 
-
 io.on('connection', (socket)=> {
     console.log('New web socket connection');
 
-    socket.emit('message', generateMessage('Welcome!'));
-    socket.broadcast.emit('message', generateMessage('A new user has joined'));
+    socket.on('join', ({username, room}) => {
+        socket.join(room);
+
+        socket.emit('message', generateMessage('Welcome!'));
+        socket.broadcast.to(room).emit('message', generateMessage(`${username} has joined!`));
+
+
+    })
 
     socket.on('sendMessage', (message, callback) => {
         const filter = new Filter();
@@ -56,3 +61,8 @@ app.get('/', (req, res) => {
 server.listen(port, () => {
   console.log("Server is running on port " + port);
 });
+
+
+//socket.emit - send event to specific client
+//io.emit - send event to every connected client
+//socket.broadcast.emit - send event to every connected client except for particular one
