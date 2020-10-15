@@ -1,7 +1,6 @@
 /* General Styles */
 
 * {
-    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
@@ -15,6 +14,7 @@ input {
 }
 
 body {
+    margin: 0;
     line-height: 1.4;
     color: #333333;
     font-family: Helvetica, Arial, sans-serif;
@@ -94,7 +94,7 @@ button:disabled {
     color: white;
     background: #333744;
     width: 225px;
-    overflow-y: scroll
+    /* overflow-y: scroll */
 }
 
 /* Chat styles */
@@ -115,7 +115,21 @@ button:disabled {
 /* Message Styles */
 
 .message {
-    margin-bottom: 16px;   
+    margin-bottom: 16px;
+    background-color: #bdd1e2;
+    padding: 10px 30px;
+    border-radius: 40px;
+    width: 600px;
+}
+
+.message-text {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+    background-color: #d4bde2;
+    margin-left: auto;
 }
 
 .message__name {

@@ -1,9 +1,10 @@
 const socket = io();
 socket.on('connect_error', function(err) {
     console.error(err);
-    alert('Sory! Unable to connect.');
-        location.href = '/';
-  });
+    alert('Sory! Unable to connect. Try again.');
+    location.href = '/';
+});
+ 
 
 
 //Elements
@@ -51,12 +52,14 @@ socket.on('message', (message) => {
     const html = Mustache.render(messageTemplate, {
         username: message.username,
         message: message.text,
-        createdAt: moment(message.createdAt).format('HH:mm')
+        createdAt: moment(message.createdAt).format('HH:mm'),
     });
     messages.insertAdjacentHTML('beforeend', html);
     autoscroll();
 
 });
+
+
 
 socket.on('locationMessage', (location)=> {
     const html = Mustache.render(locationTemplate, {
@@ -94,12 +97,13 @@ messageForm.addEventListener('submit', (event) => {
         messageFormButton.removeAttribute('disabled');
         messageFormInput.value = '';
         messageFormInput.focus();
-
+        
         if(error) {
             alert(error);
             location.href = '/';
         }
-         
+
+        messages.lastElementChild.classList.add('right');
         console.log('The message was delivered!');
         
     });
@@ -132,9 +136,8 @@ sendLocationButton.addEventListener('click', (event) => {
     });
 });
 
-
 socket.emit('join', {username, room}, (error) => {
-
+    
     if(error) {
         alert(error);
         location.href = '/';

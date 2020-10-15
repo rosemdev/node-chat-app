@@ -23,7 +23,7 @@ io.on('connection', (socket)=> {
     let adminUsername = 'Admin'
 
     socket.on('join', ({username, room}, callback) => {
-        console.log('connection join');
+        console.log('connection join', socket.id);
         
 
         const {error, user} = addUser({id: socket.id, username, room});
@@ -46,7 +46,7 @@ io.on('connection', (socket)=> {
     })
 
     socket.on('sendMessage', (message, callback) => {
-        const {error, user} = getUser(socket.id);
+        const {error, user} = getUser(socket.id);      
        
         if(error) {
             return callback(error);
