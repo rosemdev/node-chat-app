@@ -59,14 +59,15 @@ socket.on('message', (message) => {
 
 });
 
-
-
 socket.on('locationMessage', (location)=> {
+    console.log('rosedm');
+    
     const html = Mustache.render(locationTemplate, {
         username: location.username,
         url: location.url,
         createdAt: moment(location.createdAt).format('HH:mm')
     });    
+      
     messages.insertAdjacentHTML('beforeend', html);
     autoscroll();
     
@@ -119,8 +120,7 @@ sendLocationButton.addEventListener('click', (event) => {
     //disable button
     sendLocationButton.setAttribute('disabled', 'disabled');
 
-    navigator.geolocation.getCurrentPosition((position) => {    
-
+    navigator.geolocation.getCurrentPosition((position) => {
         socket.emit('sendLocation', 
         {
             lat: position.coords.latitude, 
@@ -128,7 +128,7 @@ sendLocationButton.addEventListener('click', (event) => {
         }, () => {
             console.log('Location is shared');
             sendLocationButton.removeAttribute('disabled');
-            
+            messages.lastElementChild.classList.add('right');
         }
         
         );
