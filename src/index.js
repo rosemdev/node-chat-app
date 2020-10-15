@@ -19,10 +19,12 @@ const publicDir = path.join(__dirname, '../public');
 app.use(express.static(publicDir));
 
 io.on('connection', (socket)=> {
-    console.log('New web socket connection');
+    console.log('New web socket connection!');
     let adminUsername = 'Admin'
 
     socket.on('join', ({username, room}, callback) => {
+        console.log('connection join');
+        
 
         const {error, user} = addUser({id: socket.id, username, room});
 
@@ -34,7 +36,7 @@ io.on('connection', (socket)=> {
 
         socket.emit('message', generateMessage(adminUsername,'Welcome!'));
         socket.broadcast.to(user.room).emit('message', generateMessage(adminUsername, `${user.username} has joined!`));
-
+      
         io.to(user.room).emit('roomData', {
             room: user.room,
             users: getUsersInRoom(user.room)
@@ -44,7 +46,11 @@ io.on('connection', (socket)=> {
     })
 
     socket.on('sendMessage', (message, callback) => {
-        const user = getUser(socket.id);
+        const {error, user} = getUser(socket.id);
+       
+        if(error) {
+            return callback(error);
+        }
 
         const filter = new Filter();
 

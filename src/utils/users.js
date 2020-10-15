@@ -55,7 +55,15 @@ const getUser = (id) => {
         return user.id === id;
     });
 
-    return user;
+    if(!user) {
+        return {
+            error: 'There is no such user. Please re-connect.'
+        }
+    }
+
+    return {
+        user
+    };
 }
 
 const getUsersInRoom = (room) => {
