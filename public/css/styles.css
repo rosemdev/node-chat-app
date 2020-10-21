@@ -17,7 +17,7 @@ body {
     margin: 0;
     line-height: 1.4;
     color: #333333;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'Oxygen', sans-serif;
 }
 
 h1 {
@@ -35,6 +35,7 @@ input {
     border: 1px solid #eeeeee;
     padding: 12px;
     outline: none;
+    border-radius: 6px;
 }
 
 button {
@@ -44,6 +45,7 @@ button {
     border: none;
     color: white;
     font-size: 16px;
+    border-radius: 6px;
     transition: background .3s ease;
 }
 
@@ -94,7 +96,18 @@ button:disabled {
     color: white;
     background: #333744;
     width: 225px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
     /* overflow-y: scroll */
+}
+
+#sidebar, .change-theme {
+    flex: 100%;
+}
+
+.change-theme {
+    align-self: flex-end;
 }
 
 /* Chat styles */
@@ -117,9 +130,13 @@ button:disabled {
 .message {
     margin-bottom: 16px;
     background-color: #bdd1e2;
-    padding: 10px 30px;
-    border-radius: 40px;
+    padding: 10px 18px;
+    border-radius: 18px;
     width: 600px;
+}
+
+.message-wrapper, .message-text { 
+    margin: 0;
 }
 
 .message-text {

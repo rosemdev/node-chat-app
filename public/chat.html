@@ -5,11 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat App</title>
     <link rel="icon" href="./img/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
     <div class="chat">
-        <div class="chat__sidebar" id="sidebar"></div>
+        <div class="chat__sidebar">
+            <div id="sidebar"></div>
+            <div class="change-theme">
+                <h2 class="room-title">theme</h2>
+            </div>
+        </div>
         <div class="chat__main">
             <div id="messages" class="chat__messages"></div>
             <div class="compose">
@@ -24,7 +30,7 @@
     <!-- templates -->
     <script id="message-template" type="text/html">
         <div class="message">
-            <p>
+            <p class="message-wrapper">
                 <span class="message__name">{{username}}</span>
                 <span class="message__meta">{{createdAt}}</span>
             </p>
@@ -34,12 +40,12 @@
 
     <script id="location-template" type="text/html">
         <div class="message">
-            <p>
+            <p class="message-wrapper">
                 <span class="message__name">{{username}}</span>
                 <span class="message__meta">{{createdAt}}</span>
             </p>
             
-            <p> 
+            <p class="message-wrapper"> 
                 <a href='{{url}}' target="_blank">My current location</a>
             </p>
     </div>

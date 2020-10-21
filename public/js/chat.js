@@ -59,9 +59,7 @@ socket.on('message', (message) => {
 
 });
 
-socket.on('locationMessage', (location)=> {
-    console.log('rosedm');
-    
+socket.on('locationMessage', (location)=> {   
     const html = Mustache.render(locationTemplate, {
         username: location.username,
         url: location.url,
@@ -80,6 +78,8 @@ socket.on('roomData', ({room, users}) => {
     });
 
     sidebar.innerHTML = html;
+    console.log(users);
+    
     
 });
 

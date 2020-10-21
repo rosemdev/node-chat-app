@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat App</title>
     <link rel="icon" href="./img/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
@@ -16,9 +17,23 @@
                 <input type="text" name="username" placeholder="Display name" required>
                 <label for="room">Room</label>
                 <input type="text" name="room" placeholder="Room" required>
+                <div id="rooms" class="rooms-list"></div>
                 <button>Join</button>
             </form>
         </div>
     </div>
+     <!-- templates -->
+    <script id="rooms-template" type="text/html">
+        <ul class='rooms'>
+            {{#roomsList}}
+            <li>{{.}}</li>
+            {{/roomsList}}
+        </ul>
+    </script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./js/index.js"></script>
 </body>
 </html>

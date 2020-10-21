@@ -76,11 +76,24 @@ const getUsersInRoom = (room) => {
     return usersInRoom;
 }
 
+const getRooms = () => {
+    const rooms = users.map((item, index) => {
+        return item.room;
+    });
+
+    //get only unique room names    
+    const set = new Set(rooms);
+
+    return [...set]
+}
+
+
 module.exports = {
     addUser,
     removeUser,
     getUser,
-    getUsersInRoom
+    getUsersInRoom,
+    getRooms
 }
 
 

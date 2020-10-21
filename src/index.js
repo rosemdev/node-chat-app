@@ -5,11 +5,12 @@ const socketio = require('socket.io');
 const Filter = require('bad-words');
 
 const { generateMessage, generateLocationMessage} = require('./utils/messages');
-const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/users');
+const { addUser, removeUser, getUser, getUsersInRoom, getRooms } = require('./utils/users');
 
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
+let roomsList = [];
 
 
 const port = process.env.PORT || 3000
@@ -20,11 +21,13 @@ app.use(express.static(publicDir));
 
 io.on('connection', (socket)=> {
     console.log('New web socket connection!');
-    let adminUsername = 'Admin'
+    let adminUsername = 'Admin';
+    
+
+    
 
     socket.on('join', ({username, room}, callback) => {
-        console.log('connection join', socket.id);
-        
+        console.log('connection join', socket.id);       
 
         const {error, user} = addUser({id: socket.id, username, room});
 
@@ -33,6 +36,13 @@ io.on('connection', (socket)=> {
         }
 
         socket.join(user.room);
+        
+        roomsList = getRooms();
+        console.log(roomsList);
+
+        io.emit('getRoomsList', {
+            roomsList
+        });
 
         socket.emit('message', generateMessage(adminUsername,'Welcome!'));
         socket.broadcast.to(user.room).emit('message', generateMessage(adminUsername, `${user.username} has joined!`));
@@ -76,6 +86,7 @@ io.on('connection', (socket)=> {
 
     socket.on('disconnect', () => {
         const user = removeUser(socket.id);
+        
         let adminUsername = 'Admin'
  
         if(user) {
