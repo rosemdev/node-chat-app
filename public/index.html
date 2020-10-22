@@ -13,22 +13,33 @@
         <div class="centered-form__box">
             <h1>Join</h1>
             <form action="./chat.html">
-                <label for="username">Display name</label>
-                <input type="text" name="username" placeholder="Display name" required>
-                <label for="room">Room</label>
-                <input type="text" name="room" placeholder="Room" required>
-                <div id="rooms" class="rooms-list"></div>
-                <button>Join</button>
+                <div class="name-block">
+                    <label for="username">Display name</label>
+                    <input type="text" name="username" placeholder="Display name" required>
+                </div>
+                <div class="room-choice-block">
+                    <button>New room</button>
+                    <button>Select room</button>
+                </div>
+                <div class="new-room-block">
+                    <label for="room">Room</label>
+                    <input type="text" name="room" placeholder="Room" required>
+                </div>
+                <div id="rooms" class="rooms-list-block"></div>
+                <div class="join-block">
+                    <button>Join</button>
+                </div>
             </form>
         </div>
     </div>
      <!-- templates -->
     <script id="rooms-template" type="text/html">
-        <ul class='rooms'>
+        <select class='rooms'>
+            <option value="">Select room</option>
             {{#roomsList}}
-            <li>{{.}}</li>
+            <option>{{.}}</option>
             {{/roomsList}}
-        </ul>
+        </select>
     </script>
 
 

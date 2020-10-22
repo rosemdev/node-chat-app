@@ -47,6 +47,7 @@ button {
     font-size: 16px;
     border-radius: 6px;
     transition: background .3s ease;
+    margin: 5px;
 }
 
 button:hover {
@@ -73,16 +74,28 @@ button:disabled {
     box-shadow: 0px 0px 17px 1px #1D1F26;
     background: #F7F7FA;
     padding: 24px;
-    width: 250px;
+    width: 400px;
 }
 
-.centered-form button {
-    width: 100%;
+.join-block button {
+    width: calc(100% - 10px);
 }
 
 .centered-form input {
     margin-bottom: 16px;
     width: 100%;
+}
+
+.new-room-block, .rooms-list-block, .join-block {
+    display: none;
+}
+
+.room-choice-block {
+    display: flex;
+}
+
+.room-choice-block button {
+    width: calc(50% - 10px);
 }
 
 /* Chat Page Layout */
