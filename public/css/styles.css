@@ -31,11 +31,16 @@ label {
     color: #777;
 }
 
-input {
+input, select {
     border: 1px solid #eeeeee;
     padding: 12px;
     outline: none;
     border-radius: 6px;
+    margin: 10px;
+}
+
+select {
+    width: 100%;
 }
 
 button {
