@@ -36,11 +36,35 @@ input, select {
     padding: 12px;
     outline: none;
     border-radius: 6px;
-    margin: 10px;
+    margin: 10px 0;
+    font-size: 15px;
 }
 
 select {
     width: 100%;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: transparent;
+    background-image: url("../img/arrow-down-sign-to-navigate.png");
+    background-repeat: no-repeat;
+    background-size: 10px;
+    background-position-x: calc(100% - 10px);
+    background-position-y: 15px;
+  }
+
+select:required:invalid {
+    color: gray;
+} 
+
+option {
+    color: black;
+}
+
+option[value=""][disabled] {
+    display: none;
 }
 
 button {
@@ -82,7 +106,11 @@ button:disabled {
     width: 400px;
 }
 
-.join-block button {
+.room-choice-block {
+    margin: 15px 0;
+}
+
+button.join {
     width: calc(100% - 10px);
 }
 
@@ -91,15 +119,23 @@ button:disabled {
     width: 100%;
 }
 
-.new-room-block, .rooms-list-block, .join-block {
+.new-room-form, .existing-room-form {
     display: none;
 }
 
-.room-choice-block {
+.visible {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+.choice-buttons {
     display: flex;
 }
 
-.room-choice-block button {
+.choice-buttons button {
     width: calc(50% - 10px);
 }
 

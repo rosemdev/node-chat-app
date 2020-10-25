@@ -12,30 +12,39 @@
     <div class="centered-form">
         <div class="centered-form__box">
             <h1>Join</h1>
-            <form action="./chat.html">
+            <div class="room-choice-block">
+                <div class="choice-buttons">
+                    <button type="button" class="new-room">New room</button>
+                    <button type="button" class="select-room">Select room</button>
+                </div>
+            </div>
+
+            <form action="./chat.html" class="new-room-form">
                 <div class="name-block">
                     <label for="username">Display name</label>
                     <input type="text" name="username" placeholder="Display name" required>
                 </div>
-                <div class="room-choice-block">
-                    <button type="button" class="new-room">New room</button>
-                    <button type="button" class="select-room">Select room</button>
-                </div>
                 <div class="new-room-block">
                     <label for="room">Room</label>
                     <input type="text" name="room" placeholder="Room" required>
+                    <button class="join">Join</button>
+                </div>
+            </form>
+
+            <form action="./chat.html" class="existing-room-form">
+                <div class="name-block">
+                    <label for="username">Display name</label>
+                    <input type="text" name="username" placeholder="Display name" required>
                 </div>
                 <div id="rooms" class="rooms-list-block"></div>
-                <div class="join-block">
-                    <button>Join</button>
-                </div>
+                <button class="join">Join</button>
             </form>
         </div>
     </div>
      <!-- templates -->
     <script id="rooms-template" type="text/html">
-        <select class='rooms'>
-            <option value="">Select room</option>
+        <select class='rooms' required>
+            <option value="" selected>Select room</option>
             {{#roomsList}}
             <option>{{.}}</option>
             {{/roomsList}}
